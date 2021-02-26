@@ -19,15 +19,22 @@ public class ex_6 {
 			
 			if (mult == 0) {
 				soma = num + soma;
+				cont++;
 			}
 				
 			
-			cont++;
+			
 		}while(num != 0);
 		
-
-		media = soma/(cont-1);
-		System.out.printf("A media dos números é %d", media);
+		if (cont == 0)
+		{
+			System.out.printf("Não existe divisão por zero");
+		}
+		else {
+			media = soma/cont;
+			System.out.printf("A media dos números é %d", media);
+		}
+	
 		
 		ler.close();
 	}
