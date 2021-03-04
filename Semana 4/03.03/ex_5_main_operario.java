@@ -80,32 +80,34 @@ public class ex_5_main_operario {
 				System.out.println("Qual dos funcionario acima deseja atribuir a produção? ");
 				opcao_usuario = ler.nextInt();
 				
+				for(int i=1; i < x; i++)
 				//condicao para escolha de funcionario
-				if (opcao_usuario == x)
-				{
-					nome = disct_nome.get(Integer.toString(x));
-					endereco = disct_nome.get(Integer.toString(x));
-					telefone = disct_nome.get(Integer.toString(x));
-					idade = disct_nome.get(Integer.toString(x));
-					sexo = disct_nome.get(Integer.toString(x));
-					cargo = disct_nome.get(Integer.toString(x));
 					
+					if (opcao_usuario == i)
+					{
+						nome = disct_nome.get(Integer.toString(i));
+						endereco = disct_endereco.get(Integer.toString(i));
+						telefone = disct_telefone.get(Integer.toString(i));
+						idade = disct_idade.get(Integer.toString(i));
+						sexo = disct_sexo.get(Integer.toString(i));
+						cargo = disct_cargo.get(Integer.toString(i));
+						
+						
+						System.out.println("Digite o valor da produção: ");
+						valorProducao = ler.nextDouble();
+						System.out.println("Digite a quantidade: ");
+						quantidade = ler.nextInt();
+						
+						Operario operador = new Operario(nome, endereco, telefone, idade, sexo, cargo, valorProducao);
+						
+						operador.valor(quantidade);
 					
-					System.out.println("Digite o valor da produção: ");
-					valorProducao = ler.nextDouble();
-					System.out.println("Digite a quantidade: ");
-					quantidade = ler.nextInt();
-					
-					Operario operador = new Operario(nome, endereco, telefone, idade, sexo, cargo, valorProducao);
-					
-					operador.valor(quantidade);
-				
-					System.out.println("\nO Cliente "+operador.getNome()+" com os dados: \nEndereco: "+operador.getEndereco()+" \nTelefone:"+operador.getTelefone()+" \nIdade:"+operador.getIdade()+" \nCargo:"+operador.getCargo()+"\nValor produção:"+operador.formatarMoeda());
-
-				}
-				else
-				{
-					System.out.println("Erro! Busca inválida, funcionário não consta na lista");
-				}
+						System.out.println("\nO Operador "+operador.getNome()+" com os dados: \nEndereco: "+operador.getEndereco()+" \nTelefone:"+operador.getTelefone()+" \nIdade:"+operador.getIdade()+" \nCargo:"+operador.getCargo()+"\nProduziu um valor de:"+operador.formatarMoeda());
+	
+					}
+					else
+					{
+						System.out.println("Erro! Busca inválida, funcionário não consta na lista");
+					}
 	}
 }
