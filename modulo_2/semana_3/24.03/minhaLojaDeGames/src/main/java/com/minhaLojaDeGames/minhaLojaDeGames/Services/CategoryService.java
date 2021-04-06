@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.minhaLojaDeGames.minhaLojaDeGames.Models.CategoryModel;
-
+import com.minhaLojaDeGames.minhaLojaDeGames.Models.Util.Tipo;
 import com.minhaLojaDeGames.minhaLojaDeGames.Repositories.CategoryRepository;
 
 
@@ -40,8 +40,8 @@ public class CategoryService {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	public ResponseEntity<List<CategoryModel>>findByDescriptionCategory(String description){
-		return ResponseEntity.ok(repositoryCategory.findByDescriptionContainingIgnoreCase(description));
+	public ResponseEntity<List<CategoryModel>>findByTipo(Tipo tipo){
+		return ResponseEntity.ok(repositoryCategory.findAllByTipo(tipo));
 	}
 	
 	public ResponseEntity<CategoryModel>postNewCategory(CategoryModel category){

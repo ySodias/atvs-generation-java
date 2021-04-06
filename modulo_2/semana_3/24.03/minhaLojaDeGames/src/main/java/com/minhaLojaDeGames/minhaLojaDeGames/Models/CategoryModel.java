@@ -28,7 +28,7 @@ public class CategoryModel {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private Tipo name;
+	private Tipo tipo;
 	
 	@NotNull
 	@Size(min=12, max=255)
@@ -50,11 +50,11 @@ public class CategoryModel {
 	}
 
 	public Tipo getName() {
-		return name;
+		return tipo;
 	}
 
-	public void setName(Tipo name) {
-		this.name = name;
+	public void setName(Tipo tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getDescription() {
