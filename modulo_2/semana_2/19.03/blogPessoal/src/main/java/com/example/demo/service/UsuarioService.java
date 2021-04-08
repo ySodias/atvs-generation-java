@@ -17,13 +17,19 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Usuario CadastrarUsuario(Usuario usuario){
+    public  Optional<Usuario>  CadastrarUsuario(Usuario usuario){
+
+        Optional<Usuario> usuarioExistente = usuarioRepository.findByUsuario(usuario.getUsuario());
+        if(usuarioExistente.isPresent()){
+            return Optional.empty();
+        }
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         String senhaEncoder = encoder.encode(usuario.getSenha());
         usuario.setSenha(senhaEncoder);
 
-        return usuarioRepository.save(usuario);
+        return Optional.ofNullable(usuarioRepository.save(usuario));
     }
 
     public Optional<UserLogin> Logar (Optional<UserLogin> user){
