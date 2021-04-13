@@ -18,15 +18,21 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario CadastrarUsuario(Usuario usuario){
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        Optional<Usuario> usuarioExistente = usuarioRepository.findByUsuario(usuario.getUsuario());
 
-        String senhaEncoder = encoder.encode(usuario.getSenha());
-        usuario.setSenha(senhaEncoder);
+        if(usuarioExistente.isPresent()) {
+            return null;
+        }else {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        return usuarioRepository.save(usuario);
+            String senhaEncoder = encoder.encode(usuario.getSenha());
+            usuario.setSenha(senhaEncoder);
+
+            return usuarioRepository.save(usuario);
+        }
     }
 
-    public Optional<UserLogin> Logar (Optional<UserLogin> user){
+    public Optional<UserLogin> logar (Optional<UserLogin> user){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         Optional<Usuario> usuario = usuarioRepository.findByUsuario(user.get().getUsuario());
 
